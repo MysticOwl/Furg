@@ -8,21 +8,43 @@ class Lista:
     def __repr__(self):
         string = "[ "
         for i in range(self.ini , self.end + 1):
-            string = string + ',' + str(self.vector[i])
+            string = string + str(self.vector[i]) + ','
         return string + " ]"
     
     def vazia(self):
-        return self.ini == -1 or self.end == -1
+        if self.ini == -1 and self.end == -1:
+            return True
 
     def len(self):
         if self.vazia():
             return 0
         else:
-            return self.ini - self.end +1
+            return self.size
 
     def insert(self, index, elem):
-        for i in range(self.size):
-            if i == index:
-                self.vector[i -1] = elem
+        if index == 0:
+            index = 1
+        if self.vazia():
+            self.ini = 0
+            self.fim = 0
+        elif (self.end != self.size -1):
+            for i in range(self.end, self.ini + index -2, -1):    
+                self.vector[i+1] = self.vector[i]
+            self.fim = self.fim + 1
         else:
-            raise IndexError("Indice fora da lista.")
+            for i in range(self.ini, self.ini, + index):
+                self.vector[i-1] = self.vector[i]
+            self.ini = self.ini - 1
+        self.vector[self.ini + index - 1] = elem
+        return self.vector
+    
+    def remove(self,index):
+        if index == 0:
+            index = 1
+        if (index < 0) or (index > self.size):
+            print(self.ini,self.end)
+            raise IndexError('Indice fora da lista')
+        else:
+            for i in range(self.size):
+                self.vector[i] = None
+            return self.vector
