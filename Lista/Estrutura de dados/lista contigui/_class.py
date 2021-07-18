@@ -7,7 +7,7 @@ class Lista:
 
     def __repr__(self):
         string = "[ "
-        for i in range(self.ini , self.end + 1):
+        for i in range(self.size):
             string = string + str(self.vector[i]) + ','
         return string + " ]"
     
@@ -48,3 +48,16 @@ class Lista:
             for i in range(self.size):
                 self.vector[i] = None
             return self.vector
+    
+    def location(self,elem):
+        for i in range(self.size):
+            if self.vector[i] == elem:
+                if i == 0:
+                    i = 1
+                return ("Elemento {} no indice {}.".format(elem,i))
+        return ValueError("O elemento {} não se encontra no vetor".format(elem))
+    
+    def clear(self):
+        for i in range(self.size):
+            self.vector[i] = None
+        return self.vector

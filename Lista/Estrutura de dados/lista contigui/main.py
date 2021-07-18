@@ -1,5 +1,7 @@
 from _class import *
+from product import *
 
-lista = Lista(2)
+lista = Lista(10)
+carro = Product()
 
-lista.size
+print(carro)
