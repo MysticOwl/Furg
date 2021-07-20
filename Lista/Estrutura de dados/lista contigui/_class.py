@@ -85,8 +85,14 @@ class Lista:
             return True
         else:
             return False
-                
+
     def clear(self):
         self.vetor = [None] *self.size
         self.iniArea = -1
         self.fimArea = -1
+
+    def remove(self,index):
+        for i in range(self.iniArea,self.fimArea):
+            if i == (index-1):
+                if (index - 1 <= self.getSize()//2):
+                    print(self.vetor[self.iniArea:self.fimArea])
