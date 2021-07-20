@@ -53,7 +53,8 @@ class Lista:
         elif(self.insertFim(index,elem)):
             return True
         else:
-            if(index < (self.sizeLista()//2)):
+            index -= 1
+            if(self.iniArea == 0 or ((self.getSize() < self.fimArea))) and (index>(self.getSize()//2)):
                 for i in range(self.iniArea - 1,self.iniArea):
                     self.vetor[i-1] = self.vetor[i]
                     self.vetor[i] = elem
@@ -65,7 +66,7 @@ class Lista:
                 self.fimArea = self.fimArea + 1
     
     def insertIni(self,index,elem):
-        if((index == self.iniArea) and self.iniArea > 0):
+        if((index <= self.iniArea) and self.iniArea > 0):
             index -= 1
             for i in range(self.iniArea - 1,self.iniArea):
                 self.vetor[i-1] = self.vetor[i]
@@ -96,7 +97,7 @@ class Lista:
             self.vetor[index] = elem
             self.iniArea = self.iniArea - 1
     
-    def clearLista(self):
+    def clear(self):
         self.vetor = [None] *self.size
         self.iniArea = -1
         self.fimArea = -1
