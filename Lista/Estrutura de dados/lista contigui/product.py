@@ -4,7 +4,7 @@ class Product:
         self.price = None
 
     def __repr__(self) :
-        return "Codigo: " + str(self.code) + ". Preço: " + str(self.price)
+        return "Codigo: " + str(self.code) + ". Preço: R$" + str(self.price)
     
     def getPrice(self):
         return self.price

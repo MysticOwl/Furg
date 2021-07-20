@@ -1,63 +1,102 @@
 class Lista:
-    def __init__(self, size):
+    def __init__(self,size):
         self.size = size
-        self.vector = [None] * self.size
-        self.ini = -1
-        self.end = -1
+        self.vetor = [None] *size
+        self.iniArea = -1
+        self.fimArea = -1
 
     def __repr__(self):
-        string = "[ "
-        for i in range(self.size):
-            string = string + str(self.vector[i]) + ','
-        return string + " ]"
-    
+        string = "Inicio-"
+        for i in range(self.iniArea-1, self.fimArea):
+            string += str((self.vetor[i])) + "-"
+        return string + ">Fim"
+
     def vazia(self):
-        if self.ini == -1 and self.end == -1:
+        if self.iniArea == -1 and self.fimArea == -1:
             return True
+        else:
+            return False
 
-    def len(self):
-        if self.vazia():
+    def sizeLista(self):
+        if self.fimArea == -1 and self.iniArea == -1:
             return 0
+        elif self.iniArea == self.fimArea:
+            return 1
         else:
-            return self.size
+            return (self.fimArea + 1) - self.iniArea
+    
+    def getSize(self):
+        return self.size        
 
-    def insert(self, index, elem):
-        if index == 0:
-            index = 1
-        if self.vazia():
-            self.ini = 0
-            self.fim = 0
-        elif (self.end != self.size -1):
-            for i in range(self.end, self.ini + index -2, -1):    
-                self.vector[i+1] = self.vector[i]
-            self.fim = self.fim + 1
+    def getSizeLogico(self):
+        return self.getSize() - 1
+
+    def startLista(self,index,elem):
+        if index == 0 or index == self.getSize() +1:
+            raise IndexError("Indice fora de posição.")
+        index -=1
+        if (self.iniArea >= 0) or (self.fimArea <= self.getSizeLogico()):
+            if (self.vazia()):
+                self.iniArea = 0
+                self.fimArea = 0
+                for i in range(self.iniArea, self.getSize()):
+                    if i == index:
+                        self.vetor[i] = elem
+                        self.iniArea = index + 1
+                        self.fimArea = index + 1
         else:
-            for i in range(self.ini, self.ini, + index):
-                self.vector[i-1] = self.vector[i]
-            self.ini = self.ini - 1
-        self.vector[self.ini + index - 1] = elem
-        return self.vector
-    
-    def remove(self,index):
-        if index == 0:
-            index = 1
-        if (index < 0) or (index > self.size):
-            print(self.ini,self.end)
-            raise IndexError('Indice fora da lista')
+            return False
+
+    def insert(self,index,elem):
+        if(self.insertIni(index,elem)):
+            return True
+        elif(self.insertFim(index,elem)):
+            return True
         else:
-            for i in range(self.size):
-                self.vector[i] = None
-            return self.vector
+            if(index < (self.sizeLista()//2)):
+                for i in range(self.iniArea - 1,self.iniArea):
+                    self.vetor[i-1] = self.vetor[i]
+                    self.vetor[i] = elem
+                self.iniArea = self.iniArea - 1
+            else:
+                for i in range(self.fimArea,self.fimArea + 1):
+                    self.vetor[i+1] = self.vetor[i]
+                    self.vetor[i] = elem
+                self.fimArea = self.fimArea + 1
     
-    def location(self,elem):
-        for i in range(self.size):
-            if self.vector[i] == elem:
-                if i == 0:
-                    i = 1
-                return ("Elemento {} no indice {}.".format(elem,i))
-        return ValueError("O elemento {} não se encontra no vetor".format(elem))
+    def insertIni(self,index,elem):
+        if((index == self.iniArea) and self.iniArea > 0):
+            index -= 1
+            for i in range(self.iniArea - 1,self.iniArea):
+                self.vetor[i-1] = self.vetor[i]
+                self.vetor[i] = elem
+            self.iniArea = self.iniArea - 1
+            return True
+        else:
+            return False
     
-    def clear(self):
-        for i in range(self.size):
-            self.vector[i] = None
-        return self.vector
+    def insertFim(self,index,elem):
+        if((index >= self.fimArea) and self.fimArea < self.getSize()):
+            for i in range(self.fimArea,self.fimArea + 1):
+                self.vetor[i+1] = self.vetor[i]
+                self.vetor[i] = elem
+            self.fimArea = self.fimArea + 1
+            return True
+        else:
+            return False
+
+    def insertDireita(self,index,elem):
+        pass
+    
+    def insertEsquerda(self,index,elem):
+        if(index <= (self.sizeLista()//2)):
+            index -= 1
+            for i in range(self.iniArea - 1,self.iniArea):
+                self.vetor[i-1] = self.vetor[i]
+            self.vetor[index] = elem
+            self.iniArea = self.iniArea - 1
+    
+    def clearLista(self):
+        self.vetor = [None] *self.size
+        self.iniArea = -1
+        self.fimArea = -1
