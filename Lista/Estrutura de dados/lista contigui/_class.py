@@ -85,18 +85,7 @@ class Lista:
             return True
         else:
             return False
-
-    def insertDireita(self,index,elem):
-        pass
-    
-    def insertEsquerda(self,index,elem):
-        if(index <= (self.sizeLista()//2)):
-            index -= 1
-            for i in range(self.iniArea - 1,self.iniArea):
-                self.vetor[i-1] = self.vetor[i]
-            self.vetor[index] = elem
-            self.iniArea = self.iniArea - 1
-    
+                
     def clear(self):
         self.vetor = [None] *self.size
         self.iniArea = -1
