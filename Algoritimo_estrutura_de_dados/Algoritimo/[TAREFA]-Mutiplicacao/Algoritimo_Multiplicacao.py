@@ -69,6 +69,4 @@ def american(x,y):
 x = 4321
 y = 6789
 
-print(american(x,y),)
-
-#print("\nMetodo Americano: {}\nMetodo Russo: {}\nDivisão e conquista: {}\nKaratsuba: {}\nResultado computacional x*y : {}".format(american(x,y),laRusse(x,y),diviConq(x,y),Karatsuba(x, y),x*y))
+print("\nMetodo Americano: {}\nMetodo Russo: {}\nDivisão e conquista: {}\nKaratsuba: {}\nResultado computacional x*y : {}".format(american(x,y),laRusse(x,y),diviConq(x,y),Karatsuba(x, y),x*y))
