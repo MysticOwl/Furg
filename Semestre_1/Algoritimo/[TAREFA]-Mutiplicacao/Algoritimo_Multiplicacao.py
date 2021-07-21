@@ -1,6 +1,8 @@
 def Karatsuba(x, y):
+
     if x < 10 and y < 10:
         return x * y
+        
     num1_len = len(str(x))
     num2_len = len(str(y))
 
@@ -21,8 +23,10 @@ def Karatsuba(x, y):
     return (10 ** (2*nby2))*ac + (10 ** nby2)*ad_plus_bc + bd
 
 def diviConq(x,y):
+
     if (len(str(x))) == 1 and (len(str(y))) == 1:
         return x*y
+
     n = max(len(str(x)),len(str(y)))
     n2 = round(n/2)
     
@@ -32,11 +36,10 @@ def diviConq(x,y):
     y0 = y // 10**n2
     y1 = y % 10**n2
 
-    x_quad = diviConq(x0,x1)
-    y_quad = diviConq(y0,y1)
     return (x0 * 10**n2 + x1) * (y0 * 10**n2 + y1)
 
 def laRusse(x,y):
+
     imp=0
 
     if (x == 1):
@@ -54,12 +57,17 @@ def laRusse(x,y):
     return mult + imp
 
 def american(x,y):
-    soma = 0    
+
+    soma = 0                
+
     x_unidade = x%10
+
     if x_unidade < 10:
         return x * y + soma    
     x = x//10
-    resultado = american(x,y)    
+
+    resultado = american(x,y)  
+
     return resultado + soma
 
 x = 4321
