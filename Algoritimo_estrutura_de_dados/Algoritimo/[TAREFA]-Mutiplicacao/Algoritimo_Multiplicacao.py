@@ -43,7 +43,7 @@ def laRusse(x,y):
     imp=0
 
     if (x == 1):
-        return y + imp
+        return y
 
     elif (x%2==1):
         imp += y
@@ -57,20 +57,18 @@ def laRusse(x,y):
     return mult + imp
 
 def american(x,y):
+    if (x < 10 ):
+        return (x * y)
+    
+    n = (len(str(x))-1)
+    soma = ((x//10**n) * y)*10**n
+    x = x%10**n
 
-    soma = 0                
-
-    x_unidade = x%10
-
-    if x_unidade < 10:
-        return x * y + soma    
-    x = x//10
-
-    resultado = american(x,y)  
-
-    return resultado + soma
+    return soma + american(x,y)
 
 x = 4321
 y = 6789
 
-print("\nMetodo Americano: {}\nMetodo Russo: {}\nDivisão e conquista: {}\nKaratsuba: {}\nResultado computacional x*y : {}".format(american(x,y),laRusse(x,y),diviConq(x,y),Karatsuba(x, y),x*y))
+print(american(x,y),)
+
+#print("\nMetodo Americano: {}\nMetodo Russo: {}\nDivisão e conquista: {}\nKaratsuba: {}\nResultado computacional x*y : {}".format(american(x,y),laRusse(x,y),diviConq(x,y),Karatsuba(x, y),x*y))
