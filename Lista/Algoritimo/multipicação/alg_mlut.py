@@ -53,9 +53,16 @@ def laRusse(x,y):
 
     return mult + imp
 
-x = 22343212
-y = 67892121
+def american(x,y):
+    soma = 0    
+    x_unidade = x%10
+    if x_unidade < 10:
+        return x * y + soma    
+    x = x//10
+    resultado = american(x,y)    
+    return resultado + soma
 
-#print(Karatsuba(x,y))
-print(diviConq(x,y))
-#print(laRusse(x,y))
+x = 4321
+y = 6789
+
+print("\nMetodo Americano: {}\nMetodo Russo: {}\nDivisão e conquista: {}\nKaratsuba: {}\nResultado computacional x*y : {}".format(american(x,y),laRusse(x,y),diviConq(x,y),Karatsuba(x, y),x*y))
