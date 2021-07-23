@@ -36,6 +36,9 @@ def diviConq(x,y):
     y0 = y // 10**n2
     y1 = y % 10**n2
 
+    x = diviConq(x0,x1)
+    y = diviConq(y0,y1)
+
     return (x0 * 10**n2 + x1) * (y0 * 10**n2 + y1)
 
 def laRusse(x,y):
