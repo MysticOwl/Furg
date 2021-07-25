@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Node:
     def __init__(self,data):
         '''Construtor do node'''
@@ -32,39 +35,36 @@ class Lista:
             return True
         else:
             return False
-    
-    def addLast(self,elem):
-        '''Adiciona elementos sequencialmente na lista'''
-        if self.isEmpty():
-            #Insere um node quando a lista for vazia
-            elem = Node(elem)
-            self.__head = elem
-        else:
-            #Insere um node sempre na ultima posição
-            aux = self.__head
-            while(aux.next):
-                aux = aux.next
-            aux.next = Node(elem)
-        self.__size += 1
-    
+      
     def addInList(self,index,elem):
         '''Adiciona na posição [i] o elemento [x]'''
-        if index == 1:
+        if index == 1 or self.isEmpty():
             node = Node(elem)
             node.next = self.__head
             self.__head = node
         else:
-            aux = self._getIndexNode(index)
+            aux = self._getIndexNode(index-1)
             node = Node(elem)
             node.next = aux.next
             aux.next = node
         self.__size += 1
+    
+    def removeIn(self,index):
+        if self.isEmpty():
+            return False
+        if index <= 0:
+            return False
+        aux = self.getItem(index)
+        self.removeElem(aux)
+        return True
+            
 
     def removeElem(self,elem):
         if self.isEmpty():
-            raise ValueError('Elemento não está na lista. Lista vazia')
+            return False
         elif self.__head.data == elem:
             self.__head = self.__head.next
+            return True
         else:
             prev = self.__head
             aux = self.__head.next
@@ -75,36 +75,35 @@ class Lista:
                 prev = aux
                 aux = aux.next
             self.__size -= 1
+            return True
 
     def getItem(self, index):
         '''Retorna o elemento na posição desejada [ i ]'''
-        aux = self._getIndexNode(index)
-        if aux != None:
-            return aux.data
+        if (1 <= index <= self.getSize()):            
+            return self._getIndexNode(index).data
         else:
-            raise IndexError('Indice fora da lista')
+            return False
     
     def setItem(self,index,elem):
         '''Atribui um elemento posção desejada [ i,var ]'''
-        aux = self._getIndexNode(index)
-        if aux != None:
-            aux.data = elem
+        if (1 <= index <= self.getSize()):
+            self._getIndexNode(index).data = elem
         else:
-            raise IndexError('Indice fora da lista')
+            return False
 
     def _getIndexNode(self,index):
         '''Retorna o elemento na posição desejada [ i ]'''
-        if index <= 0:
-            raise IndexError('Indice fora da lista')
+        if index < 0:
+            return False   
         aux = self.__head
         if self.isEmpty():
-            raise IndexError('A lista está vazia')
+            return False
         else:
             for i in range(1,index):
                 if aux != None:
                     aux = aux.next
                 else:
-                    raise IndexError('Indice fora da lista.')
+                    return False
         return aux
     
     def search(self, elem):
@@ -119,10 +118,17 @@ class Lista:
             else:
                 aux = aux.next
                 i += 1
-        raise ValueError('O elemento {} não se encontra nessa lista'.format(elem))
+        return False
     
     def destroy(self):
         aux = self.__head
         self.__head = None
         aux.next = None
+        self.__size = 0
         return True
+
+import random
+lista = Lista()
+for i in range(10):
+    lista.addInList(i,random.randint(1,999))
+print(lista)
