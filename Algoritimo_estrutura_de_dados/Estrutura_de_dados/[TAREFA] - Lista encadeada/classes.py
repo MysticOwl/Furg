@@ -126,9 +126,3 @@ class Lista:
         aux.next = None
         self.__size = 0
         return True
-
-import random
-lista = Lista()
-for i in range(10):
-    lista.addInList(i,random.randint(1,999))
-print(lista)

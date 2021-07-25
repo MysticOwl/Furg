@@ -1,20 +1,17 @@
 from classes import *
-import random
 
 
 bar = '='*90
 print(bar)
 print('Lista iniciada')
 lista = Lista()
-for i in range(10):
-    lista.addInList(i,str(random.randint(1,999)))
-print(lista)
 print(bar)
 print('1 - Inserir um elemento na posição:')
 print('2 - Remover da posição:')
 print('3 - Revelar o valor da posição:')
 print('4 - Revelar a posição do valor:')
 print('5 - Destruir a lista:')
+print('0 - Para encerrar o programa:')
 print(bar)
 while True:    
     oper = input('Digite a operação desejada: ')  
@@ -72,5 +69,5 @@ while True:
         oper = input('Deseja sair?\n [S]im - [N]ão: ')
         print(bar)
         if oper == 'S':
-            False
+            break
     print('Lista Atualizada:\n',lista)
