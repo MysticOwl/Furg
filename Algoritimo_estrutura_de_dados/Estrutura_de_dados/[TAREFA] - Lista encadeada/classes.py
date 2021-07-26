@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Node:
     def __init__(self,data):
         '''Construtor do node'''
@@ -120,9 +117,37 @@ class Lista:
                 i += 1
         return False
     
+    def quantElem(self):
+        if self.isEmpty():
+            return True
+        return self.getSize()
+    
     def destroy(self):
         aux = self.__head
         self.__head = None
         aux.next = None
         self.__size = 0
         return True
+    
+    def equalList(self,lista):
+        if self.getSize() != lista.getSize():
+            return False
+        headSecond = lista
+        aux = 1
+        for i in range(1,headSecond.getSize()+1):
+            firstElem = self.getItem(i)
+            secondElem = headSecond.getItem(i)
+            if firstElem != secondElem:
+                return False
+        return True
+    
+    def reversList(self):
+        lista = Lista()
+        aux = self.getSize()
+        for i in range (1,self.getSize()+1):
+            revers = self.getItem(aux)
+            lista.addInList(i,revers)
+            aux -= 1
+        self.destroy()
+        self.__head = lista.getHead()
+        return self.__head
