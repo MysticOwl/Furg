@@ -9,14 +9,12 @@ def mult(x,y):
 
 def soma(x,y):
     if x > y:
-        if y == 0:
-            return x + y
-        x += 1
-        y -= 1
-        return soma(x,y)
+        while y > 0:
+            x += 1
+            y -= 1
+        return x
     else:
-        if x == 0:
-            return y + x
-        x -= 1
-        y += 1
-        return soma(x,y)
+        while x > 0:
+            y += 1
+            x -= 1
+        return y
