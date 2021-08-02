@@ -53,10 +53,10 @@ table.write('\n////=================MULTIPLICAÇÃO=================/////\n')
 table.write('\n')
 #loop de multiplicação
 for i in range(1,11):
-    ini = timeit.default_timer()
+    ini_mult = timeit.default_timer()
     mult((x),(y))
-    end = timeit.default_timer()
-    table.writelines([str(bar),'\n','Algoritmo de multiplicação\n','\nExecução                :',str(i),'\nTamanho de n            :',str(len(str(x))),'\nTempo de execução       :', str(end-ini),'\n'])
+    end_mult = timeit.default_timer()
+    table.writelines([str(bar),'\n','Algoritmo de multiplicação\n','\nExecução                :',str(i),'\nTamanho de n            :',str(len(str(x))),'\nTempo de execução       :', str(end_mult-ini_mult),'\n'])
     x *= 10**(i*4000)
     y *= 10**(i*4000)
 
@@ -67,10 +67,10 @@ x = 9876543210
 y = 1234567890
 #loop de soma
 for i in range(1,11):
-    ini = timeit.default_timer()
+    ini_soma = timeit.default_timer()
     soma((x),(y))
-    end = timeit.default_timer()
-    table.writelines([str(bar),'\n','Algoritmo de soma\n','\nExecução                :',str(i),'\nTamanho de n            :',str(len(str(x))),'\nTempo de execução       :', str(end-ini),'\n'])
+    end_soma = timeit.default_timer()
+    table.writelines([str(bar),'\n','Algoritmo de soma\n','\nExecução                :',str(i),'\nTamanho de n            :',str(len(str(x))),'\nTempo de execução       :', str(end_soma-ini_soma),'\n'])
     x *= 10**(i*4000)
     y *= 10**(i*4000)    
 table.close()
