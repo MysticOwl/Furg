@@ -27,10 +27,16 @@ class Pilha:
         self.__size = 0
 
     def __repr__(self):
+        string = ''
         if self.getTopo() == None:
             return 'Pilha vazia'
         else:
-            return 'Topo -> ' + str(self.getTopo())
+            pointer = self.getTopo()
+            string += str(pointer.getDado()) + '\n'
+            while pointer.getProx() != None:
+                pointer = pointer.getProx()
+                string += str(pointer.getDado()) + '\n'
+        return '\nTopo\n' + str(string) + 'Base'
     
     def getSize(self):
         return self.__size
@@ -53,7 +59,7 @@ class Pilha:
         if self.getSize() == 0:
             return True
         else:
-            return False
+            return False           
     
     def insert(self,dado):
         node = Node()
@@ -74,3 +80,20 @@ class Pilha:
             self.setTopo(topo.getProx())
             del topo
             self.remSize()
+    
+    def topoPilha(self):
+        if self.isEmpty():
+            return False
+        return self.getTopo().getDado()
+    
+    def comparar(self, pilha):
+        if self.getSize() != pilha.getSize():
+            return False
+        firstPilha = self.getTopo()
+        secondPilha = pilha.getTopo()
+        for i in range(self.getSize()):
+            if firstPilha.getDado() != secondPilha.getDado():
+                return False
+            firstPilha = firstPilha.getProx()
+            secondPilha = secondPilha.getProx()
+        return True
