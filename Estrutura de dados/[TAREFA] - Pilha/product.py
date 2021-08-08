@@ -3,6 +3,9 @@ class Produto:
         self.__codigo = None
         self.__price = None
     
+    def __repr__(self):
+        return 'Codigo: '+str(self.getCodigo())+' Preço: R$'+str(self.getPrice()) 
+
     def getCodigo(self):
         return self.__codigo
     
