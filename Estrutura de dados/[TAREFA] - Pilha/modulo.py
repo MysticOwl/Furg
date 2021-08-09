@@ -28,11 +28,9 @@ def comparaPilhas(pilha1,pilha2):
     if pilha1.getSize() != pilha2.getSize():
         return False
     topo_pilha1 = pilha1.getTopo()
-    topo_pilha2 = pilha2.getTopo()
-    for i in range(pilha1.getSize()):
+    for i in range(pilha1.getSize()):        
+        topo_pilha2 = pilha2.getElem(i)
         if topo_pilha1.getDado() != topo_pilha2:
             return False
         topo_pilha1 = topo_pilha1.getProx()
-        topo_pilha2 = pilha2.remove()
-        topo_pilha2 = pilha2.getTopo()
     return True

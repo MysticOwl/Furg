@@ -10,10 +10,12 @@ class PilhaContiguidade:
     
     def __repr__(self):
         string = ''
+        pointer = self.getSize()
         if (self.isEmpty()):
             return 'Pilha vazia'
         for i in range(self.__topo + 1):
-            string += str(self.__vector[i]) + '\n'
+            pointer -= 1
+            string += str(self.__vector[pointer]) + '\n'
         return '\nTopo\n' + str(string) + 'Base'
     
     def isEmpty(self):
@@ -57,6 +59,13 @@ class PilhaContiguidade:
             return False
         else:
             return self.__vector[self.__topo]
+    
+    def getElem(self,index):
+        if (self.isEmpty()):
+            return False
+        else:
+            pointer = (self.getSize()-1) - index
+            return self.__vector[pointer]
     
     def _getVector(self):
         return self.__vector
