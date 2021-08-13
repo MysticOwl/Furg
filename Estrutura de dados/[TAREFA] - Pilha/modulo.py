@@ -7,10 +7,7 @@ class Node:
         self.__prox = None
     
     def __repr__(self):
-        if self.getProx() == None:
-            return str(self.getDado())
-        else:
-            return str(self.getDado()) + '->' + str(self.getProx())
+        return str(self.getDado())
         
     def getDado(self):
         return self.__dado

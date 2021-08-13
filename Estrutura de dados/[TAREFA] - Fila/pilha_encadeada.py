@@ -1,4 +1,4 @@
-from modulo import Node
+from modulo import *
 
 class PilhaEncadeada:
     def __init__(self):
