@@ -24,7 +24,7 @@ class Carro:
         self.__placa = str(value)
     
     def setAno(self, value):
-        self.__ano = int(value)
+        self.__ano = str(value)
     
     def setDono(self, value):
         self.__dono = str(value)

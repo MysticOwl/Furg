@@ -9,7 +9,7 @@ class Tabela:
     def __repr__(self):
         string = ''
         if self._size == 0:
-            return 'Tabela Vazia'
+            return 'Vazia'
         for i in range(self._ini, self._size + 1):
             string += str(self._value[i]) + '\n'
         return string
@@ -26,7 +26,7 @@ class Tabela:
         else:
             return False
 
-    def _linearSearch(self,value):
+    def _sequentialSearch(self,value):
         if (not self.isEmpty()):
             for i in range(self._ini, self._size + 1):
                 if self._key[i] == value:
@@ -41,7 +41,7 @@ class Tabela:
             while aux_ini <= aux_fim:
                 middle = (aux_ini + aux_fim)//2
                 if str(self._key[middle]) == value:
-                    return self._value[middle]
+                    return middle
                 else:
                     if str(self._key[middle]) < value:
                         aux_fim = middle - 1
@@ -50,12 +50,14 @@ class Tabela:
             return 0
 
     def look(self,value, param):
-        if param == 'l' or param == 'L':
-            index = self._linearSearch(value)
+        if param == 's' or param == 'S':
+            index = self._sequentialSearch(value)
             if index > 0:
                 return self._value[index]
         elif param == 'b' or param == 'B':
-            self._binarySearch(value)
+            index = self._binarySearch(value)
+            if index > 0:
+                return self._value[index]
         else:
             return False
     
@@ -73,21 +75,25 @@ class Tabela:
                     self._value[j] = aux_value                    
 
     def insert(self,value):
-        index = self._linearSearch(value)
+        index = self._sequentialSearch(value)
         if index > 0:
             self._value[index] = value
+            return True
         elif (not self.isFull()):
             self._size += 1
             self._key[self._size] = value.getPlaca()
             self._value[self._size] = value
+            return True
+        return False
     
     def remove(self,value):
-        index = self._linearSearch(value)
+        index = self._binarySearch(value)
         if index > 0:
             for i in range(index, self._size + 1):           
                 self._key[i] = self._key[i+1]
                 self._value[i] = self._value[i+1]
             self._size -= 1
+            return True
         else:
             return False
     
