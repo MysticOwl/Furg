@@ -76,10 +76,14 @@ class Tabela:
             index = self._sequentialSearch(value)
             if index > 0:
                 return self._value[index]
+            else:
+                return False
         elif param == 'b' or param == 'B':
             index = self._binarySearch(value)
             if index > 0:
                 return self._value[index]
+            else:
+                return False
         else:
             return False
     
