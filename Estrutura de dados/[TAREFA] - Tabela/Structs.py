@@ -49,6 +49,9 @@ class Tabela:
         return 0
     
     def _binary_recursion(self,ini,fim,value):
+        ''''
+        Método recursivo para busca binária
+        '''
         mid = (ini+fim)//2
         if str(self._key[mid]) == value:
             return mid
@@ -61,9 +64,6 @@ class Tabela:
         return recursion
 
     def _binarySearch(self,value):
-        '''
-        Método de busca binária
-        '''
         if (not self.isEmpty()):
             self._sort
             return self._binary_recursion(self._ini,self._size,value)              
