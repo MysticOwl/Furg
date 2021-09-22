@@ -48,24 +48,26 @@ class Tabela:
                     return i
         return 0
     
+    def _binary_recursion(self,ini,fim,value):
+        mid = (ini+fim)//2
+        if str(self._key[mid]) == value:
+            return mid
+        if str(self._key[mid]) < value:
+            fim = mid - 1
+        else:
+            print('else')
+            ini = mid + 1
+        recursion = self._binary_recursion(ini,fim,value)
+        return recursion
+
     def _binarySearch(self,value):
         '''
         Método de busca binária
         '''
         if (not self.isEmpty()):
             self._sort
-            aux_ini = self._ini
-            aux_fim = self._size
-            while aux_ini <= aux_fim:
-                middle = (aux_ini + aux_fim)//2
-                if str(self._key[middle]) == value:
-                    return middle
-                else:
-                    if str(self._key[middle]) < value:
-                        aux_fim = middle - 1
-                    else:
-                        aux_ini = middle + 1
-            return 0
+            return self._binary_recursion(self._ini,self._size,value)              
+        return 0
 
     def look(self,value, param):
         '''
