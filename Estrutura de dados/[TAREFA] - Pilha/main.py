@@ -5,6 +5,8 @@ from pilha_contiguidade import *
 from modulo import comparaPilhas
 from product import *
 
+#Teste
+
 # Check list:
 #     Instanciar Classes                  :
 #     Menu de inserir e remover           :
